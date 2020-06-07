@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="GFFScoringApp.Views.CharactersPage"
+             Title="{Binding Title}"
+             x:Name="SelectCharacterPage">
+
+
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
+        <ListView ItemsSource="{Binding Characters}" SelectedItem="{Binding SelectedCharacter}" SelectionMode="Single" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell
+                        Text="{Binding Name}"
+                        Detail="{Binding Detail}"
+                        ImageSource="{Binding ImageUrl}">
+                    </ImageCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+        <!--<Picker FontSize="Medium" Title="Select a Character" ItemsSource="{Binding Items}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedCharacter}">
+
+        </Picker>-->
+        <Button  Text="Next" Command="{Binding SelectCharacterCommand}" IsEnabled="{Binding IsNextEnabled, Mode=TwoWay}"></Button>
+    </StackLayout>
+</ContentPage>
