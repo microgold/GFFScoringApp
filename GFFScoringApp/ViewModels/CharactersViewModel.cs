@@ -40,7 +40,7 @@ namespace GFFScoringApp.Views
 
         public CharactersViewModel()
         {
-            Title = "Characters";
+            Title = "Select a Character";
             Characters = new ObservableCollection<Item>()
             {
                 new Item() {ImageUrl = ImageSource.FromFile("gff.jpg"), Name = "Good Food Fighter"},

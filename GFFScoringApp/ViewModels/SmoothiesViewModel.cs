@@ -40,7 +40,7 @@ namespace GFFScoringApp.Views
 
         public SmoothiesViewModel()
         {
-            Title = "Characters";
+            Title = "Select a Smoothie";
             Smoothies = new ObservableCollection<Item>()
             {
                 new Item() {ImageUrl = ImageSource.FromFile("crappyfrappe.jpg"), Name = "Crappy Frappe"},
