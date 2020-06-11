@@ -10,11 +10,11 @@ namespace GFFScoringApp.Views
 {
     internal class CharactersViewModel : BaseViewModel
     {
-        private Item _selectedCharacter = null;
+        private Character _selectedCharacter = null;
         private bool _isNextEnabled = false;
-        public ObservableCollection<Item> Characters { get; set; }
+        public ObservableCollection<Character> Characters { get; set; }
 
-        public Item SelectedCharacter
+        public Character SelectedCharacter
         {
             get => _selectedCharacter;
             set { _selectedCharacter = value;
@@ -29,6 +29,9 @@ namespace GFFScoringApp.Views
 
         private async void OnSelectedCharacter()
         {
+            var summary = DependencyService.Resolve<ISummary>();
+            summary.SelectedCharacter = _selectedCharacter;
+
             await PushAsync(new SmoothiePage());
         }
 
@@ -41,12 +44,12 @@ namespace GFFScoringApp.Views
         public CharactersViewModel()
         {
             Title = "Select a Character";
-            Characters = new ObservableCollection<Item>()
+            Characters = new ObservableCollection<Character>()
             {
-                new Item() {ImageUrl = ImageSource.FromFile("gff.jpg"), Name = "Good Food Fighter"},
-                new Item() {ImageUrl = ImageSource.FromFile("gff.jpg"), Name = "Keto Ken"},
-                new Item() {ImageUrl = ImageSource.FromFile("gff.jpg"), Name = "Healthy Heather"},
-                new Item() {ImageUrl = ImageSource.FromFile("gff.jpg"), Name = "Paleo Pete"},
+                new Character() {ImageUrl = ImageSource.FromFile("gff.jpg"), Name = "Good Food Fighter"},
+                new Character() {ImageUrl = ImageSource.FromFile("gff.jpg"), Name = "Keto Ken"},
+                new Character() {ImageUrl = ImageSource.FromFile("gff.jpg"), Name = "Healthy Heather"},
+                new Character() {ImageUrl = ImageSource.FromFile("gff.jpg"), Name = "Paleo Pete"},
             };
 
             SelectCharacterCommand = new Command(OnSelectedCharacter);

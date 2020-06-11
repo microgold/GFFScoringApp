@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GFFScoringApp.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using GFFScoringApp.Services;
@@ -21,8 +22,11 @@ namespace GFFScoringApp
             });
 
             DependencyService.Register<MockDataStore>();
+            DependencyService.Register<ISummary, Summary>();
+
             var mainPage = new MainPage();
             MainPage = new NavigationPage(mainPage) { Title = "GFF" }; // your page here
+
             
 
             ((MainPage)mainPage).Splash.Clicked += async (object sender, EventArgs e) =>

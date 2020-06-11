@@ -10,11 +10,11 @@ namespace GFFScoringApp.Views
 {
     internal class SmoothiesViewModel : BaseViewModel
     {
-        private Item _selectedSmoothie = null;
+        private Smoothie _selectedSmoothie = null;
         private bool _isNextEnabled = false;
-        public ObservableCollection<Item> Smoothies { get; set; }
+        public ObservableCollection<Smoothie> Smoothies { get; set; }
 
-        public Item SelectedSmoothie
+        public Smoothie SelectedSmoothie
         {
             get => _selectedSmoothie;
             set { _selectedSmoothie = value;
@@ -29,7 +29,10 @@ namespace GFFScoringApp.Views
 
         private async void OnSelectedSmoothie()
         {
-            await PushAsync(new SmoothiePage());
+            var summary = DependencyService.Resolve<ISummary>();
+            summary.SelectedSmoothie = _selectedSmoothie;
+
+            await PushAsync(new VeggiesPage());
         }
 
         public bool IsNextEnabled
@@ -41,12 +44,12 @@ namespace GFFScoringApp.Views
         public SmoothiesViewModel()
         {
             Title = "Select a Smoothie";
-            Smoothies = new ObservableCollection<Item>()
+            Smoothies = new ObservableCollection<Smoothie>()
             {
-                new Item() {ImageUrl = ImageSource.FromFile("crappyfrappe.jpg"), Name = "Crappy Frappe"},
-                new Item() {ImageUrl = ImageSource.FromFile("crappyfrappe.jpg"), Name = "Veggie Wedgie"},
-                new Item() {ImageUrl = ImageSource.FromFile("crappyfrappe.jpg"), Name = "Quickie Lickie"},
-                new Item() {ImageUrl = ImageSource.FromFile("crappyfrappe.jpg"), Name = "Fruit Punch"},
+                new Smoothie() {ImageUrl = ImageSource.FromFile("crappyfrappe.jpg"), Name = "Crappy Frappe"},
+                new Smoothie() {ImageUrl = ImageSource.FromFile("crappyfrappe.jpg"), Name = "Veggie Wedgie"},
+                new Smoothie() {ImageUrl = ImageSource.FromFile("crappyfrappe.jpg"), Name = "Quickie Lickie"},
+                new Smoothie() {ImageUrl = ImageSource.FromFile("crappyfrappe.jpg"), Name = "Fruit Punch"},
             };
 
             SelectSmoothieCommand = new Command(OnSelectedSmoothie);

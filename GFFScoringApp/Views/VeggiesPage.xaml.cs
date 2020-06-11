@@ -9,23 +9,25 @@ namespace GFFScoringApp.Views
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
-    public partial class SmoothiePage : ContentPage
+    public partial class VeggiesPage : ContentPage
     {
-        SmoothiesViewModel viewModel;
+        VeggiesViewModel viewModel;
 
-        public SmoothiePage()
+        public VeggiesPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new SmoothiesViewModel();
+            BindingContext = viewModel = new VeggiesViewModel();
             viewModel.Navigation = Navigation;
         }
+
+       
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            if (viewModel.Smoothies.Count == 0)
+            if (viewModel.Veggies.Count == 0)
                 viewModel.IsBusy = true;
         }
     }

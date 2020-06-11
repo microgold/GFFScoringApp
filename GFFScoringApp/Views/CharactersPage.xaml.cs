@@ -28,17 +28,6 @@ namespace GFFScoringApp.Views
             viewModel.Navigation = Navigation;
         }
 
-        async void OnItemSelected(object sender, EventArgs args)
-        {
-            var layout = (BindableObject)sender;
-            var item = (Item)layout.BindingContext;
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
-        }
-
-        async void AddItem_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
-        }
 
         protected override void OnAppearing()
         {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GFFScoringApp.Models
+﻿namespace GFFScoringApp.Models
 {
     public enum IngredientCategory
     {
@@ -15,6 +11,8 @@ namespace GFFScoringApp.Models
     public class Ingredient : Item
     {
         public bool IsSuperFood { get; set; }
+
+        public bool IsSelected { get; set; }
 
         public IngredientCategory Category { get; set; }
 

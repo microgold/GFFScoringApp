@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="GFFScoringApp.Views.SummaryPage"
+             Title="{Binding Title}"
+             x:Name="SelectSummaryPage">
+
+<StackLayout>
+            <CarouselView ItemsSource="{Binding Summary.SelectedVeggies}">
+                <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <ContentView>
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="100" WidthRequest="300">
+
+                            <Frame HeightRequest="100" WidthRequest="100" Padding="0" HasShadow="false" IsClippedToBounds="true" CornerRadius="0" BackgroundColor="Red">
+                                <StackLayout>
+                                <Label HeightRequest="35"  Text="{Binding Name}"></Label>
+                                <Label  Text="{Binding Detail}"></Label>
+                                <Image HeightRequest="50" Aspect="AspectFit" Source="{Binding ImageUrl}"></Image>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+
+                    </ContentView>
+
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+            </CarouselView>
+
+    <!--<CarouselView ItemsSource="{Binding Summary.SelectedFruits}">
+        <CarouselView.ItemTemplate>
+            <DataTemplate>
+                <ImageCell
+                    Text="{Binding Name}"
+                    Detail="{Binding Detail}"
+                    ImageSource="{Binding ImageUrl}">
+                </ImageCell>
+            </DataTemplate>
+        </CarouselView.ItemTemplate>
+    </CarouselView>-->
+
+        <!--<ListView ItemsSource="{Binding Summary.SelectedBoosts}" SelectionMode="None" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell
+                        Text="{Binding Name}"
+                        Detail="{Binding Detail}"
+                        ImageSource="{Binding ImageUrl}">
+                    </ImageCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView ItemsSource="{Binding Summary.SelectedSweeteners}" SelectionMode="None" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell
+                        Text="{Binding Name}"
+                        Detail="{Binding Detail}"
+                        ImageSource="{Binding ImageUrl}">
+                    </ImageCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>-->
+</StackLayout>
+
+
+    <!--<Picker FontSize="Medium" Title="Select a Summary" ItemsSource="{Binding Items}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedSummary}">
+
+        </Picker>-->
+        <!--<Button  Text="Next" Command="{Binding SelectSummaryCommand}" IsEnabled="{Binding IsNextEnabled, Mode=TwoWay}"></Button>-->
+</ContentPage>
