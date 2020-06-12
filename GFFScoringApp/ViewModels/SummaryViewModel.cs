@@ -8,24 +8,12 @@ namespace GFFScoringApp.Views
 {
     internal class SummaryViewModel : BaseViewModel
     {
-        private Item _selectedCharacter = null;
         private bool _isNextEnabled = false;
         public ObservableCollection<Veggie> SelectedVeggies { get; set; }
         public ObservableCollection<Fruit> SelectedFruits { get; set; }
         public ObservableCollection<Sweetener> SelectedSweeteners { get; set; }
         public ObservableCollection<Boost> SelectedBoosts { get; set; }
 
-
-        public Item SelectedCharacter
-        {
-            get => _selectedCharacter;
-            set { _selectedCharacter = value;
-                if (_selectedCharacter != null)
-                {
-                    IsNextEnabled = true;
-                }
-            }
-        }
 
         public ISummary Summary { get; private set; }
         public ICommand SelectCharacterCommand { get; set; }
@@ -43,7 +31,7 @@ namespace GFFScoringApp.Views
 
         public SummaryViewModel()
         {
-            Title = "Select a Character";
+            Title = "Summary of Your Score";
             Summary = DependencyService.Resolve<ISummary>();
 
             SelectedVeggies = new ObservableCollection<Veggie>(Summary.SelectedVeggies);

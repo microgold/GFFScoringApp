@@ -46,12 +46,12 @@ namespace GFFScoringApp.Views
             Title = "Select a Smoothie";
             Fruits = new ObservableCollection<Fruit>()
             {
-                new Fruit() {ImageUrl = ImageSource.FromFile("apple.png"), Name = "apple"},
-                new Fruit() {ImageUrl = ImageSource.FromFile("banana.png"), Name = "banana"},
-                new Fruit() {ImageUrl = ImageSource.FromFile("grape.png"), Name = "grapes"},
-                new Fruit() {ImageUrl = ImageSource.FromFile("mango.png"), Name = "mango"},
-                new Fruit() {ImageUrl = ImageSource.FromFile("date.png"), Name = "date"},
-                new Fruit() {ImageUrl = ImageSource.FromFile("watermelon.png"), Name = "watermelon"},
+                new Fruit() {ImageUrl = ImageSource.FromFile("apple.png"), Name = "apple", HealthBonus = 14},
+                new Fruit() {ImageUrl = ImageSource.FromFile("banana.png"), Name = "banana", HealthBonus = 10},
+                new Fruit() {ImageUrl = ImageSource.FromFile("grape.png"), Name = "grapes", HealthBonus = 10},
+                new Fruit() {ImageUrl = ImageSource.FromFile("mango.png"), Name = "mango", HealthBonus = 14},
+                new Fruit() {ImageUrl = ImageSource.FromFile("date.png"), Name = "date", HealthBonus = 12},
+                new Fruit() {ImageUrl = ImageSource.FromFile("watermelon.png"), Name = "watermelon", HealthBonus = 12},
             };
 
             MessagingCenter.Subscribe<Fruit>(this, "toggledfruit", (sender) => IsNextEnabled = Fruits.Any(fruit => fruit.IsSelected));

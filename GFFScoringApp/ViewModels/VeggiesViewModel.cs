@@ -57,12 +57,12 @@ namespace GFFScoringApp.Views
             Title = "Select a Fruit";
             Veggies = new ObservableCollection<Veggie>()
             {
-                new Veggie() {ImageUrl = ImageSource.FromFile("avocado.png"), Name = "avocado"},
-                new Veggie() {ImageUrl = ImageSource.FromFile("carrot.png"), Name = "carrot"},
-                new Veggie() {ImageUrl = ImageSource.FromFile("beet.png"), Name = "beet"},
-                new Veggie() {ImageUrl = ImageSource.FromFile("spinach.png"), Name = "spinach"},
-                new Veggie() {ImageUrl = ImageSource.FromFile("parsley.png"), Name = "parsley"},
-                new Veggie() {ImageUrl = ImageSource.FromFile("kale.png"), Name = "kale"},
+                new Veggie() {ImageUrl = ImageSource.FromFile("avocado.png"), Name = "avocado", HealthBonus = 16},
+                new Veggie() {ImageUrl = ImageSource.FromFile("carrot.png"), Name = "carrot", HealthBonus=12},
+                new Veggie() {ImageUrl = ImageSource.FromFile("beet.png"), Name = "beet", HealthBonus=14},
+                new Veggie() {ImageUrl = ImageSource.FromFile("spinach.png"), Name = "spinach", HealthBonus = 14},
+                new Veggie() {ImageUrl = ImageSource.FromFile("parsley.png"), Name = "parsley", HealthBonus = 18},
+                new Veggie() {ImageUrl = ImageSource.FromFile("kale.png"), Name = "kale", HealthBonus = 18},
 
             };
 

@@ -1,11 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Xamarin.Forms.Internals;
 
 namespace GFFScoringApp.Models
 {
     public class Summary : ISummary
     {
+        public int VeggieScore {
+            get
+            {
+                var pureHealthBonus = SelectedVeggies.Select(veggie => veggie.HealthBonus).Sum();
+                return pureHealthBonus;
+            }
+        }
+        public int FruitScore
+        {
+            get
+            {
+                var pureHealthBonus = SelectedFruits.Select(fruit => fruit.HealthBonus).Sum();
+                return pureHealthBonus;
+            }
+        }
+
+        public int BoostScore { get; set; }
+        public int SweetnerScore { get; set; }
+
         public IList<Veggie> SelectedVeggies { get; set; }
         public IList<Fruit> SelectedFruits { get; set; }
         public IList<Boost> SelectedBoosts { get; set; }
