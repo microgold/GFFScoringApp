@@ -1,4 +1,6 @@
-﻿namespace GFFScoringApp.Models
+﻿using System;
+
+namespace GFFScoringApp.Models
 {
     public enum IngredientCategory
     {
@@ -14,11 +16,22 @@
 
         public bool IsSelected { get; set; }
 
+        public bool CanBeSweetener { get; set; }
+
+        public bool UseAsSweetener { get; set; }
+
+        public bool CanBeBoost { get; set; }
+
+        public bool UseAsBoost { get; set; }
+
         public IngredientCategory Category { get; set; }
 
         public int HealthBonus { get; set; }
 
         public int ExtraHealthBonus { get; set; }
+
+        public Action<Summary> ExtraScoreAction { get; set; }
+
 
         public int Protein { get; set; }
 

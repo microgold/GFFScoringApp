@@ -48,7 +48,7 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame BorderColor="Black" CornerRadius="10" Margin="0,0,-15,0" HeightRequest="80" ScaleX=".75" ScaleY=".75">
+                    <Frame BorderColor="Black" CornerRadius="10"  HeightRequest="80" WidthRequest ="45" ScaleX=".75" ScaleY=".75" >
                         <StackLayout VerticalOptions="Start" >
                             <Image Source="{Binding ImageUrl}"
                                    Aspect="AspectFit"
@@ -79,7 +79,7 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame BorderColor="Black" CornerRadius="10" Margin="0,0,-15,0" HeightRequest="80" ScaleX=".75" ScaleY=".75">
+                    <Frame BorderColor="Black" CornerRadius="10" HeightRequest="80"  WidthRequest ="45" ScaleX=".75" ScaleY=".75">
                     <StackLayout VerticalOptions="Start" >
                         <Image Source="{Binding ImageUrl}"
                                Aspect="AspectFit"
@@ -102,7 +102,66 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        
+        <!-- Boosts -->
+        <CollectionView Grid.Column="0" Grid.Row="3" ItemsSource="{Binding Summary.SelectedBoosts}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="4"  />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Black" CornerRadius="10"  HeightRequest="80"  WidthRequest ="45" ScaleX=".75" ScaleY=".75">
+                        <StackLayout VerticalOptions="Start" >
+                            <Image Source="{Binding ImageUrl}"
+                                   Aspect="AspectFit"
+                                   HeightRequest="55"
+                            />
+                            <Label  Grid.Row="1"
+                                    Text="{Binding Name}"
+                                    FontAttributes="Bold"
+                                    FontSize="Small"
+                                    LineBreakMode="TailTruncation" />
+                            <Label Grid.Row="2"
+                               
+                                   Text="{Binding HealthBonus}"
+                                   LineBreakMode="TailTruncation"
+                                   FontAttributes="Italic"
+                                   VerticalOptions="End" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Sweeteners -->
+        <CollectionView Grid.Column="0" Grid.Row="4" ItemsSource="{Binding Summary.SelectedSweeteners}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="4"  />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Black" CornerRadius="10" HeightRequest="80"  WidthRequest ="45" ScaleX=".75" ScaleY=".75">
+                        <StackLayout VerticalOptions="Start" >
+                            <Image Source="{Binding ImageUrl}"
+                                   Aspect="AspectFit"
+                                   HeightRequest="55"
+                            />
+                            <Label  Grid.Row="1"
+                                    Text="{Binding Name}"
+                                    FontAttributes="Bold"
+                                    FontSize="Small"
+                                    LineBreakMode="TailTruncation" />
+                            <Label Grid.Row="2"
+                               
+                                   Text="{Binding HealthBonus}"
+                                   LineBreakMode="TailTruncation"
+                                   FontAttributes="Italic"
+                                   VerticalOptions="End" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
 
         <Label Grid.Row="1" Grid.Column="1" Text="{Binding Summary.VeggieScore}" FontSize="Large" VerticalOptions="Center">
 
@@ -110,10 +169,16 @@
         <Label Grid.Row="2" Grid.Column="1" Text="{Binding Summary.FruitScore}" VerticalOptions="Center" FontSize="Large">
 
         </Label>
+        <Label Grid.Row="3" Grid.Column="1" Text="{Binding Summary.BoostScore}" VerticalOptions="Center" FontSize="Large">
 
-        
+        </Label>
+        <Label Grid.Row="4" Grid.Column="1" Text="{Binding Summary.SweetenerScore}" VerticalOptions="Center" FontSize="Large">
 
-    </Grid>
+        </Label>
+
+
+
+</Grid>
 
 
     

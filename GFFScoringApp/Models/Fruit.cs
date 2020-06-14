@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace GFFScoringApp.Models
@@ -7,7 +8,7 @@ namespace GFFScoringApp.Models
     {
   
         public ICommand SelectedFruitCommand { get; set; }
-
+        
         public Fruit()
         {
             SelectedFruitCommand = new Command(OnSelectedFruit);

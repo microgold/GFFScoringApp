@@ -47,9 +47,9 @@ namespace GFFScoringApp.Views
             Characters = new ObservableCollection<Character>()
             {
                 new Character() {ImageUrl = ImageSource.FromFile("gff.jpg"), Name = "Good Food Fighter"},
-                new Character() {ImageUrl = ImageSource.FromFile("gff.jpg"), Name = "Keto Ken"},
-                new Character() {ImageUrl = ImageSource.FromFile("gff.jpg"), Name = "Healthy Heather"},
-                new Character() {ImageUrl = ImageSource.FromFile("gff.jpg"), Name = "Paleo Pete"},
+                new Character() {ImageUrl = ImageSource.FromFile("ketoken.png"), Name = "Keto Ken"},
+                new Character() {ImageUrl = ImageSource.FromFile("healthyheather.png"), Name = "Healthy Heather"},
+                new Character() {ImageUrl = ImageSource.FromFile("paleopete.png"), Name = "Paleo Pete"},
             };
 
             SelectCharacterCommand = new Command(OnSelectedCharacter);

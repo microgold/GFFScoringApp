@@ -23,8 +23,23 @@ namespace GFFScoringApp.Models
             }
         }
 
-        public int BoostScore { get; set; }
-        public int SweetnerScore { get; set; }
+        public int BoostScore
+        {
+            get
+            {
+                var pureHealthBonus = SelectedBoosts.Select(boost => boost.HealthBonus).Sum();
+                return pureHealthBonus;
+            }
+        }
+
+        public int SweetenerScore
+        {
+            get
+            {
+                var pureHealthBonus = SelectedSweeteners.Select(sweetener => sweetener.HealthBonus).Sum();
+                return pureHealthBonus;
+            }
+        }
 
         public IList<Veggie> SelectedVeggies { get; set; }
         public IList<Fruit> SelectedFruits { get; set; }

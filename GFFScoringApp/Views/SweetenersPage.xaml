@@ -4,40 +4,29 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:eventToCommandBehavior="clr-namespace:EventToCommandBehavior;assembly=GFFScoringApp"
-             xmlns:local="clr-namespace:GFFScoringApp.Views;assembly=GFFScoringApp"
              mc:Ignorable="d"
-             x:Class="GFFScoringApp.Views.VeggiesPage"
+             x:Class="GFFScoringApp.Views.SweetenersPage"
              Title="{Binding Title}"
-             x:Name="SelectVeggiePage">
+             x:Name="SelectSweetenerPage">
 
 
-    <StackLayout x:Name="veggieLayout" HorizontalOptions="Center" VerticalOptions="Center" >
-        <ListView ItemsSource="{Binding Veggies}" SelectedItem="{Binding SelectedVeggie}" SelectionMode="Single" >
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
+        <ListView ItemsSource="{Binding Sweeteners}" SelectedItem="{Binding SelectedSweetener}" SelectionMode="Single" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
                             <Image WidthRequest="50" Source="{Binding ImageUrl}"></Image>
                             <Label WidthRequest="100" Margin="10,0,0,0" Text="{Binding Name}" ></Label>
-                            <Switch IsToggled="{Binding IsSelected, Mode=TwoWay}" >
+                            <Switch IsToggled="{Binding IsSelected}" >
                                 <Switch.Behaviors>
-                                    <eventToCommandBehavior:EventToCommandBehavior EventName="Toggled" Command="{Binding SelectedVeggieCommand}"  />
+                                    <eventToCommandBehavior:EventToCommandBehavior EventName="Toggled" Command="{Binding SelectedSweetenerCommand}"  />
                                 </Switch.Behaviors>
                             </Switch>
-                            <CheckBox Margin="10,0,0,0" IsVisible="{Binding CanBeSweetener}" IsChecked="{Binding UseAsSweetener}" >
-
-                            </CheckBox>
-                            <Label IsVisible="{Binding CanBeSweetener}" Text="Sweetener?"></Label>
-                            <CheckBox Margin="10,0,0,0" IsVisible="{Binding CanBeBoost}" IsChecked="{Binding UsAsBoost}" >
-
-                            </CheckBox>
-                            <Label IsVisible="{Binding CanBeBoost}" Text="Boost?"></Label>
-
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-
 
         </ListView>
         <!--<Picker FontSize="Medium" Title="Select a Character" ItemsSource="{Binding Items}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedCharacter}">

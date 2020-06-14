@@ -57,12 +57,18 @@ namespace GFFScoringApp.Views
             Title = "Select a Veggie";
             Veggies = new ObservableCollection<Veggie>()
             {
-                new Veggie() {ImageUrl = ImageSource.FromFile("avocado.png"), Name = "avocado", HealthBonus = 16},
-                new Veggie() {ImageUrl = ImageSource.FromFile("carrot.png"), Name = "carrot", HealthBonus=12},
-                new Veggie() {ImageUrl = ImageSource.FromFile("beet.png"), Name = "beet", HealthBonus=14},
-                new Veggie() {ImageUrl = ImageSource.FromFile("spinach.png"), Name = "spinach", HealthBonus = 14},
-                new Veggie() {ImageUrl = ImageSource.FromFile("parsley.png"), Name = "parsley", HealthBonus = 18},
-                new Veggie() {ImageUrl = ImageSource.FromFile("kale.png"), Name = "kale", HealthBonus = 18},
+                new Veggie() {ImageUrl = ImageSource.FromFile("avocado.png"), Name = "avocado", HealthBonus = 20, Fat = 3, Protein = 1, IsSuperFood = true, CanBeBoost = true},
+                new Veggie() {ImageUrl = ImageSource.FromFile("carrot.png"), Name = "carrot", HealthBonus=15, Sweetness = 2},
+                new Veggie() {ImageUrl = ImageSource.FromFile("beet.png"), Name = "beet", HealthBonus=15, Sweetness = 2, CanBeSweetener = true},
+                new Veggie() {ImageUrl = ImageSource.FromFile("spinach.png"), Name = "spinach", HealthBonus = 15, Protein = 1},
+                new Veggie() {ImageUrl = ImageSource.FromFile("parsley.png"), Name = "parsley", HealthBonus = 15},
+                new Veggie() {ImageUrl = ImageSource.FromFile("kale.png"), Name = "kale", HealthBonus = 20, Protein = 1, IsSuperFood = true},
+                new Veggie() {ImageUrl = ImageSource.FromFile("fennel.png"), Name = "fennel", HealthBonus = 15},
+                new Veggie() {ImageUrl = ImageSource.FromFile("ginger.png"), Name = "ginger", HealthBonus = 15},
+                new Veggie() {ImageUrl = ImageSource.FromFile("redcabbage.png"), Name = "red cabbage", HealthBonus = 15, Sweetness = 1},
+                new Veggie() {ImageUrl = ImageSource.FromFile("turmeric.png"), Name = "turmeric", HealthBonus = 20, IsSuperFood = true, CanBeBoost = true},
+                new Veggie() {ImageUrl = ImageSource.FromFile("mint.png"), Name = "mint", HealthBonus = 10},
+                new Veggie() {ImageUrl = ImageSource.FromFile("cucumber.png"), Name = "cucumber", HealthBonus = 10},
 
             };
 

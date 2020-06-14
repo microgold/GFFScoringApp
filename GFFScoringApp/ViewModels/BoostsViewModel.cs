@@ -32,7 +32,7 @@ namespace GFFScoringApp.Views
         {
             var summary = DependencyService.Resolve<ISummary>();
             summary.AddBoostSelection(Boosts.Where(boost => boost.IsSelected).ToList());
-            await PushAsync(new SummaryPage());
+            await PushAsync(new SweetenersPage());
         }
 
         public bool IsNextEnabled
@@ -47,15 +47,15 @@ namespace GFFScoringApp.Views
             Boosts = new ObservableCollection<Boost>()
             {
                 new Boost() {ImageUrl = ImageSource.FromFile("almondbutter.png"), Name = "almond butter", HealthBonus = 15, Fat = 3, Protein = 2},
-                new Boost() {ImageUrl = ImageSource.FromFile("hemp.png"), Name = "hemp seeds", HealthBonus = 20, Protein = 4},
+                new Boost() {ImageUrl = ImageSource.FromFile("hemp.png"), Name = "hemp seeds", HealthBonus = 20, Protein = 4, IsSuperFood = true},
                 new Boost() {ImageUrl = ImageSource.FromFile("mushroompowder.png"), Name = "mushroom powder", HealthBonus = 15, Protein = 3},
                 new Boost() {ImageUrl = ImageSource.FromFile("cocoanibs.png"), Name = "raw cocoa nibs", HealthBonus = 15, Fat = 4},
                 new Boost() {ImageUrl = ImageSource.FromFile("flaxseeds.png"), Name = "flax seeds", HealthBonus = 15, Fat = 1, Protein = 3},
                 new Boost() {ImageUrl = ImageSource.FromFile("coconutoil.png"), Name = "cocunut oil", HealthBonus = 15, Fat = 5},
                 new Boost() {ImageUrl = ImageSource.FromFile("peanutbutter.png"), Name = "peanut butter", HealthBonus = 10, Fat = 3, Protein = 3},
                 new Boost() {ImageUrl = ImageSource.FromFile("yogurt.png"), Name = "whole yogurt", HealthBonus = 15, Fat = 3, Protein = 4},
-                new Boost() {ImageUrl = ImageSource.FromFile("beepollen.png"), Name = "bee pollen", HealthBonus = 20, Sweetness = 1, Protein = 1},
-                new Boost() {ImageUrl = ImageSource.FromFile("spirulina.png"), Name = "spirulina", HealthBonus = 20, Protein = 3},
+                new Boost() {ImageUrl = ImageSource.FromFile("beepollen.png"), Name = "bee pollen", HealthBonus = 20, Sweetness = 1, Protein = 1, IsSuperFood = true},
+                new Boost() {ImageUrl = ImageSource.FromFile("spirulina.png"), Name = "spirulina", HealthBonus = 20, Protein = 3, IsSuperFood = true},
                 new Boost() {ImageUrl = ImageSource.FromFile("wheypowder.png"), Name = "whey powder", HealthBonus = 10, Sweetness = 4, Protein = 3},
             };
 
