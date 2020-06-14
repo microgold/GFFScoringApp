@@ -47,9 +47,13 @@ namespace GFFScoringApp.Views
             Smoothies = new ObservableCollection<Smoothie>()
             {
                 new Smoothie() {ImageUrl = ImageSource.FromFile("crappyfrappe.jpg"), Name = "Crappy Frappe"},
-                new Smoothie() {ImageUrl = ImageSource.FromFile("crappyfrappe.jpg"), Name = "Veggie Wedgie"},
-                new Smoothie() {ImageUrl = ImageSource.FromFile("crappyfrappe.jpg"), Name = "Quickie Lickie"},
-                new Smoothie() {ImageUrl = ImageSource.FromFile("crappyfrappe.jpg"), Name = "Fruit Punch"},
+                new Smoothie() {ImageUrl = ImageSource.FromFile("veggiewedgie.jpg"), Name = "Veggie Wedgie"},
+                new Smoothie() {ImageUrl = ImageSource.FromFile("quickylicky.jpg"), Name = "Quickie Lickie"},
+                new Smoothie() {ImageUrl = ImageSource.FromFile("fruitpunch.png"), Name = "Fruit Punch"},
+                new Smoothie() {ImageUrl = ImageSource.FromFile("rainbowglow.png"), Name = "Rainbow Glow"},
+                new Smoothie() {ImageUrl = ImageSource.FromFile("neatoketo.png"), Name = "Neato Keto"},
+                new Smoothie() {ImageUrl = ImageSource.FromFile("superfoodsallie.png"), Name = "Superfood Sallie"},
+                new Smoothie() {ImageUrl = ImageSource.FromFile("berryboostblitz.png"), Name = "Berryboost Blitz"},
             };
 
             SelectSmoothieCommand = new Command(OnSelectedSmoothie);

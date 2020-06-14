@@ -32,7 +32,7 @@ namespace GFFScoringApp.Views
         {
             var summary = DependencyService.Resolve<ISummary>();
             summary.AddFruitSelection(Fruits.Where(fruit => fruit.IsSelected).ToList());
-            await PushAsync(new SummaryPage());
+            await PushAsync(new BoostsPage());
         }
 
         public bool IsNextEnabled
@@ -43,7 +43,7 @@ namespace GFFScoringApp.Views
 
         public FruitsViewModel()
         {
-            Title = "Select a Smoothie";
+            Title = "Select a Fruit";
             Fruits = new ObservableCollection<Fruit>()
             {
                 new Fruit() {ImageUrl = ImageSource.FromFile("apple.png"), Name = "apple", HealthBonus = 14},

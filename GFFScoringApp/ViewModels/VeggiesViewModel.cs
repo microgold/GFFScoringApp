@@ -54,7 +54,7 @@ namespace GFFScoringApp.Views
         {
             MessagingCenter.Subscribe<Veggie>(this, "toggledveggie", (sender) => IsNextEnabled = Veggies.Any(veggie => veggie.IsSelected));
 
-            Title = "Select a Fruit";
+            Title = "Select a Veggie";
             Veggies = new ObservableCollection<Veggie>()
             {
                 new Veggie() {ImageUrl = ImageSource.FromFile("avocado.png"), Name = "avocado", HealthBonus = 16},

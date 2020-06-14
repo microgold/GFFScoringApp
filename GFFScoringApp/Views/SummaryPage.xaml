@@ -8,7 +8,7 @@
              Title="{Binding Title}"
              x:Name="SelectSummaryPage">
 
-    <Grid VerticalOptions="StartAndExpand">
+    <Grid VerticalOptions="StartAndExpand" Margin="0,0,0,10">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="120"></RowDefinition>
@@ -42,63 +42,53 @@
         </Grid>
 
         <!-- Veggies -->
-        <CollectionView Grid.Row="1" ItemsSource="{Binding Summary.SelectedVeggies}">
+        <CollectionView  Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Summary.SelectedVeggies}">
             <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Horizontal"  />
+                <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="4"  />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="75" />
-                            <RowDefinition Height="35" />
-                            <RowDefinition Height="15" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="65" />
-                        </Grid.ColumnDefinitions>
-                        <Image Source="{Binding ImageUrl}"
-                               Aspect="AspectFit"
-                               HeightRequest="75"
-                               WidthRequest="60" />
-                        <Label  Grid.Row="1"
-                               Text="{Binding Name}"
-                               FontAttributes="Bold"
-                               LineBreakMode="TailTruncation" />
-                        <Label Grid.Row="2"
-                               Text="{Binding HealthBonus}"
-                               LineBreakMode="TailTruncation"
-                               FontAttributes="Italic"
-                               VerticalOptions="End" />
-                    </Grid>
+                    <Frame BorderColor="Black" CornerRadius="10" Margin="0,0,-15,0" HeightRequest="80" ScaleX=".75" ScaleY=".75">
+                        <StackLayout VerticalOptions="Start" >
+                            <Image Source="{Binding ImageUrl}"
+                                   Aspect="AspectFit"
+                                   HeightRequest="55"
+                            />
+                            <Label  Grid.Row="1"
+                                    Text="{Binding Name}"
+                                    FontAttributes="Bold"
+                                    FontSize="Small"
+                                    ScaleY=".75" ScaleX=".75"
+                                    LineBreakMode="TailTruncation" />
+                            <Label Grid.Row="2"
+                                    
+                                   Text="{Binding HealthBonus}"
+                                   LineBreakMode="TailTruncation"
+                                   FontAttributes="Italic"
+                                   VerticalOptions="End" />
+                        </StackLayout>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
         <!-- Fruits -->
-        <CollectionView Grid.Row="2" ItemsSource="{Binding Summary.SelectedFruits}">
+        <CollectionView Grid.Column="0" Grid.Row="2" ItemsSource="{Binding Summary.SelectedFruits}">
             <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Horizontal"  />
+                <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="4"  />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame BorderColor="Black" CornerRadius="10" WidthRequest="60" >
-                    <Grid >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="75" />
-                            <RowDefinition Height="35" />
-                            <RowDefinition Height="35" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="65" />
-                        </Grid.ColumnDefinitions>
+                    <Frame BorderColor="Black" CornerRadius="10" Margin="0,0,-15,0" HeightRequest="80" ScaleX=".75" ScaleY=".75">
+                    <StackLayout VerticalOptions="Start" >
                         <Image Source="{Binding ImageUrl}"
                                Aspect="AspectFit"
-                               HeightRequest="75"
-                               WidthRequest="60" />
+                               HeightRequest="55"
+                                />
                         <Label  Grid.Row="1"
                                 Text="{Binding Name}"
                                 FontAttributes="Bold"
+                                FontSize="Small"
                                 LineBreakMode="TailTruncation" />
                         <Label Grid.Row="2"
                                
@@ -106,98 +96,25 @@
                                LineBreakMode="TailTruncation"
                                FontAttributes="Italic"
                                VerticalOptions="End" />
-                    </Grid>
+                    </StackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Summary.VeggieScore}">
+        
+
+        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Summary.VeggieScore}" FontSize="Large" VerticalOptions="Center">
 
         </Label>
-        <Label Grid.Row="2" Grid.Column="1" Text="{Binding Summary.FruitScore}">
+        <Label Grid.Row="2" Grid.Column="1" Text="{Binding Summary.FruitScore}" VerticalOptions="Center" FontSize="Large">
 
         </Label>
 
-        <!--<CarouselView Grid.Row="0" ItemsSource="{Binding Summary.SelectedVeggies}" PeekAreaInsets="90" HorizontalOptions="Start">
-                <CarouselView.ItemTemplate>
-                <DataTemplate>
-                    <ContentView>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="100" WidthRequest="300">
-                            <Frame HeightRequest="75" WidthRequest="50" Padding="0" HasShadow="false" IsClippedToBounds="true" CornerRadius="10" BackgroundColor="Gray">
-                                <StackLayout >
-                                    <Label HeightRequest="35"  Text="{Binding Name}" HorizontalTextAlignment="Center" FontSize="Small"></Label>
-                                    <Label  Text="{Binding HealthBonus}" HorizontalTextAlignment="Center" FontSize="Micro"></Label>
-                                    <Image HeightRequest="60" Aspect="AspectFit" Source="{Binding ImageUrl}"></Image>
-                                </StackLayout>
-                            </Frame>
-                        </StackLayout>
-                    </ContentView>
-                </DataTemplate>
-            </CarouselView.ItemTemplate>
-            </CarouselView>
-
-        <CarouselView Grid.Row="1" ItemsSource="{Binding Summary.SelectedFruits}" PeekAreaInsets="90" HorizontalOptions="Start">
-        <CarouselView.ItemTemplate>
-            <DataTemplate>
-                <ContentView>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="100" WidthRequest="300">
-                        <Frame HeightRequest="75" WidthRequest="50" Padding="0" HasShadow="false" IsClippedToBounds="true" CornerRadius="10" BackgroundColor="Gray">
-                            <StackLayout>
-                                <Label HeightRequest="35"  Text="{Binding Name}" HorizontalTextAlignment="Center" FontSize="Small"></Label>
-                                <Label  Text="{Binding HealthBonus}" HorizontalTextAlignment="Center" FontSize="Micro"></Label>
-                                <Image HeightRequest="60" Aspect="AspectFit" Source="{Binding ImageUrl}"></Image>
-                            </StackLayout>
-                        </Frame>
-                    </StackLayout>
-                </ContentView>
-            </DataTemplate>
-        </CarouselView.ItemTemplate>
-    </CarouselView>-->
+        
 
     </Grid>
 
 
-    <!--<CarouselView ItemsSource="{Binding Summary.SelectedFruits}">
-        <CarouselView.ItemTemplate>
-            <DataTemplate>
-                <ImageCell
-                    Text="{Binding Name}"
-                    Detail="{Binding Detail}"
-                    ImageSource="{Binding ImageUrl}">
-                </ImageCell>
-            </DataTemplate>
-        </CarouselView.ItemTemplate>
-    </CarouselView>-->
-
-        <!--<ListView ItemsSource="{Binding Summary.SelectedBoosts}" SelectionMode="None" >
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ImageCell
-                        Text="{Binding Name}"
-                        Detail="{Binding Detail}"
-                        ImageSource="{Binding ImageUrl}">
-                    </ImageCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-        <ListView ItemsSource="{Binding Summary.SelectedSweeteners}" SelectionMode="None" >
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ImageCell
-                        Text="{Binding Name}"
-                        Detail="{Binding Detail}"
-                        ImageSource="{Binding ImageUrl}">
-                    </ImageCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>-->
-
-
-
-    <!--<Picker FontSize="Medium" Title="Select a Summary" ItemsSource="{Binding Items}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedSummary}">
-
-        </Picker>-->
-        <!--<Button  Text="Next" Command="{Binding SelectSummaryCommand}" IsEnabled="{Binding IsNextEnabled, Mode=TwoWay}"></Button>-->
+    
 </ContentPage>
