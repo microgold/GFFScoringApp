@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Windows.Input;
 using GFFScoringApp.Models;
-using GFFScoringApp.ViewModels;
+using GFFScoringApp.Views;
 using Xamarin.Forms;
 
-namespace GFFScoringApp.Views
+namespace GFFScoringApp.ViewModels
 {
     internal class SweetenersViewModel : BaseViewModel
     {
@@ -46,9 +46,9 @@ namespace GFFScoringApp.Views
             Title = "Select a Sweetener";
             Sweeteners = new ObservableCollection<Sweetener>()
             {
-                new Sweetener() {ImageUrl = ImageSource.FromFile("honey.png"), Name = "honey", HealthBonus = 5, Sweetness = 6},
-                new Sweetener() {ImageUrl = ImageSource.FromFile("date.png"), Name = "date", HealthBonus = 10, Sweetness = 6},
-                new Sweetener() {ImageUrl = ImageSource.FromFile("cinnamon.png"), Name = "cinnamon", HealthBonus = 10, Sweetness = 2},
+                new Sweetener() {ImageUrl = ImageSource.FromFile("honey.png"), Name = "honey", HealthBonus = 5, Sweetness = 6, Color = Enums.Color.Brown},
+                new Sweetener() {ImageUrl = ImageSource.FromFile("date.png"), Name = "date", HealthBonus = 10, Sweetness = 6, Color = Enums.Color.Brown},
+                new Sweetener() {ImageUrl = ImageSource.FromFile("cinnamon.png"), Name = "cinnamon", HealthBonus = 10, Sweetness = 2, Color = Enums.Color.Brown},
             };
 
             MessagingCenter.Subscribe<Sweetener>(this, "toggledsweetener", (sender) => IsNextEnabled = Sweeteners.Any(sweetener => sweetener.IsSelected));

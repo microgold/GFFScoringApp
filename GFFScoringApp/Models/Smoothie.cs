@@ -11,7 +11,9 @@ namespace GFFScoringApp.Models
         public int MinimumSweetnessRequirement { get; set; }
         public int VeggieRequirement { get; set; }
         public int FruitRequirement { get; set; }
-        public int SweetnerRequirement { get; set; }
+        public int SweetenerRequirement { get; set; }
         public int BoostRequirement { get; set; }
+        public int MinimumBerryRequirement { get; set; }
+        public int MinimumSuperfoodRequirement { get; set; }
     }
 }

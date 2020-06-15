@@ -1,10 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GFFScoringApp.Models;
-using GFFScoringApp.ViewModels;
+using GFFScoringApp.Views;
 using Xamarin.Forms;
 
-namespace GFFScoringApp.Views
+namespace GFFScoringApp.ViewModels
 {
     internal class SummaryViewModel : BaseViewModel
     {
@@ -13,7 +13,6 @@ namespace GFFScoringApp.Views
         public ObservableCollection<Fruit> SelectedFruits { get; set; }
         public ObservableCollection<Sweetener> SelectedSweeteners { get; set; }
         public ObservableCollection<Boost> SelectedBoosts { get; set; }
-
 
         public ISummary Summary { get; private set; }
         public ICommand SelectCharacterCommand { get; set; }

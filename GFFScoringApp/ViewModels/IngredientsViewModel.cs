@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Security.Cryptography.X509Certificates;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GFFScoringApp.Models;
-using GFFScoringApp.ViewModels;
+using GFFScoringApp.Views;
 using Xamarin.Forms;
 
-namespace GFFScoringApp.Views
+namespace GFFScoringApp.ViewModels
 {
     internal class IngredientsViewModel : BaseViewModel
     {

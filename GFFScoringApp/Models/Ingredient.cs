@@ -1,17 +1,12 @@
 ﻿using System;
+using GFFScoringApp.Enums;
+using GFFScoringApp.ViewModels;
 
 namespace GFFScoringApp.Models
 {
-    public enum IngredientCategory
-    {
-        Veggie,
-        Fruit,
-        Sweetner,
-        Boost
-    }
-
     public class Ingredient : Item
     {
+        public Color Color { get; set; }
         public bool IsSuperFood { get; set; }
 
         public bool IsSelected { get; set; }
