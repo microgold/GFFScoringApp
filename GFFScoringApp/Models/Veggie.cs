@@ -15,6 +15,8 @@ namespace GFFScoringApp.Models
 
         private void OnSelectedAVeggie(object obj)
         {
+            OnPropertyChanged(nameof(ShowSweetenerChoice));
+            OnPropertyChanged(nameof(ShowBoostChoice));
             MessagingCenter.Send<Veggie>(this, "toggledveggie");
         }
     }

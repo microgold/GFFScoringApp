@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GFFScoringApp.Interfaces;
 using GFFScoringApp.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

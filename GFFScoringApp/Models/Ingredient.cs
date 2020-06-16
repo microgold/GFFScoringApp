@@ -13,6 +13,10 @@ namespace GFFScoringApp.Models
 
         public bool CanBeSweetener { get; set; }
 
+        public bool ShowSweetenerChoice => IsSelected && CanBeSweetener;
+
+        public bool ShowBoostChoice => IsSelected && CanBeBoost;
+
         public bool UseAsSweetener { get; set; }
 
         public bool CanBeBoost { get; set; }

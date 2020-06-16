@@ -1,13 +1,16 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using GFFScoringApp.Interfaces;
 using GFFScoringApp.Models;
 using GFFScoringApp.Views;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace GFFScoringApp.ViewModels
 {
-    internal class SweetenersViewModel : BaseViewModel
+    internal class SweetenersViewModel : BaseViewModel, ICheckIngredientRequirements<Sweetener>
     {
         private Sweetener _selectedSweetener = null;
         private bool _isNextEnabled = false;
@@ -31,7 +34,8 @@ namespace GFFScoringApp.ViewModels
         private async void OnSelectedSmoothie()
         {
             var summary = DependencyService.Resolve<ISummary>();
-            summary.AddSweetenerSelection(Sweeteners.Where(sweetener => sweetener.IsSelected).ToList());
+            summary.ClearSweetenerSelection();
+            summary.AddSweetenerSelection(Sweeteners.Where(sweetener => sweetener.IsSelected).Cast<Ingredient>().ToList());
             await PushAsync(new SummaryPage());
         }
 
@@ -51,13 +55,53 @@ namespace GFFScoringApp.ViewModels
                 new Sweetener() {ImageUrl = ImageSource.FromFile("cinnamon.png"), Name = "cinnamon", HealthBonus = 10, Sweetness = 2, Color = Enums.Color.Brown},
             };
 
-            MessagingCenter.Subscribe<Sweetener>(this, "toggledsweetener", (sender) => IsNextEnabled = Sweeteners.Any(sweetener => sweetener.IsSelected));
+
+            HandleSweetenerSubstitutes();
+
+
+            MessagingCenter.Subscribe<Sweetener>(this, "toggledsweetener", (sender) => IsNextEnabled = DoesIngredientsMeetSmoothieRequirements(sender));
 
 
             SelectSmoothieCommand = new Command(OnSelectedSmoothie);
         }
 
+        protected void HandleSweetenerSubstitutes()
+        {
+            var summary = DependencyService.Resolve<ISummary>();
 
+            var sweetenerSubstitutes =
+                summary.SelectedSweeteners.Where(ingredient => ingredient.UseAsSweetener).ToList();
+
+            sweetenerSubstitutes.ForEach(sweetener => Sweeteners.Add(ToSweetener(sweetener)));
+            if (sweetenerSubstitutes.Count > 0)
+            {
+                IsNextEnabled = DoesIngredientsMeetSmoothieRequirements(Sweeteners.LastOrDefault());
+            }
+        }
+
+        private Sweetener ToSweetener(Ingredient sweetener)
+        {
+            return new Sweetener()
+            {
+                ImageUrl = sweetener.ImageUrl, Name = sweetener.Name,
+                HealthBonus = sweetener.HealthBonus, 
+                Sweetness = sweetener.Sweetness,
+                Protein = sweetener.Protein,
+                Fat = sweetener.Fat,
+                Color = sweetener.Color,
+                IsSelected = sweetener.IsSelected
+            };
+
+        }
+
+        public bool DoesIngredientsMeetSmoothieRequirements(Sweetener ingredient)
+        {
+                var summary = DependencyService.Resolve<ISummary>();
+                var smoothie = summary.SelectedSmoothie;
+                var numberOfSelectedSweeteners = Sweeteners.Count(fruit => fruit.IsSelected);
+
+                return smoothie.SweetenerRequirement == numberOfSelectedSweeteners;
+        }
     }
 
 }

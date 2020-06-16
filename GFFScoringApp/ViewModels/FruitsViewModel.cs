@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using GFFScoringApp.Interfaces;
 using GFFScoringApp.Models;
 using GFFScoringApp.Views;
 using Xamarin.Forms;
@@ -8,10 +9,11 @@ using Color = GFFScoringApp.Enums.Color;
 
 namespace GFFScoringApp.ViewModels
 {
-    internal class FruitsViewModel : BaseViewModel
+    internal class FruitsViewModel : BaseViewModel, ICheckIngredientRequirements<Fruit>
     {
         private Fruit _selectedFruit = null;
         private bool _isNextEnabled = false;
+        private Fruit _self;
         public ObservableCollection<Fruit> Fruits { get; set; }
 
         public Fruit SelectedFruit
@@ -20,19 +22,18 @@ namespace GFFScoringApp.ViewModels
             set
             {
                 _selectedFruit = value;
-                if (_selectedFruit != null)
-                {
-                    IsNextEnabled = true;
-                }
             }
         }
 
-        public ICommand SelectSmoothieCommand { get; set; }
+        public ICommand SelectNextCommand { get; set; }
 
-        private async void OnSelectedSmoothie()
+
+        private async void OnSelectedFruit()
         {
             var summary = DependencyService.Resolve<ISummary>();
-            summary.AddFruitSelection(Fruits.Where(fruit => fruit.IsSelected).ToList());
+            summary.ClearFruitSelection();
+            summary.AddFruitSelection(Fruits.Where(fruit => fruit.IsSelected && !fruit.UseAsSweetener).Cast<Ingredient>().ToList());
+            summary.AddSweetenerSelection(Fruits.Where(fruit => fruit.IsSelected && fruit.UseAsSweetener).Cast<Ingredient>().ToList());
             await PushAsync(new BoostsPage());
         }
 
@@ -62,13 +63,25 @@ namespace GFFScoringApp.ViewModels
                 new Fruit() {ImageUrl = ImageSource.FromFile("watermelon.png"), Name = "watermelon", HealthBonus = 12, CanBeSweetener = true, Color=Color.Red},
             };
 
-            MessagingCenter.Subscribe<Fruit>(this, "toggledfruit", (sender) => IsNextEnabled = Fruits.Any(fruit => fruit.IsSelected));
+            MessagingCenter.Subscribe<Fruit>(this, "toggledfruit", (sender) => IsNextEnabled = DoesIngredientsMeetSmoothieRequirements(sender));
 
+            SelectNextCommand = new Command(OnSelectedFruit);
+        }
 
-            SelectSmoothieCommand = new Command(OnSelectedSmoothie);
+        private void OnSelectFruit(Fruit fruit)
+        {
+            DoesIngredientsMeetSmoothieRequirements(fruit);
         }
 
 
-    }
+        public bool DoesIngredientsMeetSmoothieRequirements(Fruit selectedFruit)
+        {
+            var summary = DependencyService.Resolve<ISummary>();
+            var smoothie = summary.SelectedSmoothie;
+            var numberOfSelectedFruits = Fruits.Count(fruit => fruit.IsSelected && !fruit.UseAsSweetener);
 
+            return smoothie.FruitRequirement == numberOfSelectedFruits;
+
+        }
+    }
 }

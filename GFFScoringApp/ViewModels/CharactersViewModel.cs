@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using GFFScoringApp.Interfaces;
 using GFFScoringApp.Models;
 using GFFScoringApp.Views;
 using Xamarin.Forms;

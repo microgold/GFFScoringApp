@@ -1,13 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using GFFScoringApp.Interfaces;
 using GFFScoringApp.Models;
 using GFFScoringApp.Views;
 using Xamarin.Forms;
 
 namespace GFFScoringApp.ViewModels
 {
-    internal class VeggiesViewModel : BaseViewModel
+    internal class VeggiesViewModel : BaseViewModel, ICheckIngredientRequirements<Veggie>
     {
         private Veggie _selectedVeggie = null;
         private bool _isNextEnabled = false;
@@ -39,7 +40,11 @@ namespace GFFScoringApp.ViewModels
         private async void OnSelectedSmoothie()
         {
             var summary = DependencyService.Resolve<ISummary>();
-            summary.AddVeggieSelection(Veggies.Where(veggie => veggie.IsSelected).ToList());
+
+            summary.ClearVeggieSelection();
+            summary.AddVeggieSelection(Veggies.Where(veggie => veggie.IsSelected && !veggie.UseAsBoost && !veggie.UseAsSweetener).Cast<Ingredient>().ToList());
+            summary.AddBoostSelection(Veggies.Where(veggie => veggie.IsSelected && veggie.UseAsBoost).Cast<Ingredient>().ToList());
+            summary.AddSweetenerSelection(Veggies.Where(veggie => veggie.IsSelected && veggie.UseAsSweetener).Cast<Ingredient>().ToList());
 
             await PushAsync(new FruitsPage());
         }
@@ -52,7 +57,7 @@ namespace GFFScoringApp.ViewModels
 
         public VeggiesViewModel()
         {
-            MessagingCenter.Subscribe<Veggie>(this, "toggledveggie", (sender) => IsNextEnabled = Veggies.Any(veggie => veggie.IsSelected));
+            MessagingCenter.Subscribe<Veggie>(this, "toggledveggie", (sender) => IsNextEnabled = DoesIngredientsMeetSmoothieRequirements(sender));
 
             Title = "Select a Veggie";
             Veggies = new ObservableCollection<Veggie>()
@@ -77,6 +82,13 @@ namespace GFFScoringApp.ViewModels
         }
 
 
+        public bool DoesIngredientsMeetSmoothieRequirements(Veggie ingredient)
+        {
+            var summary = DependencyService.Resolve<ISummary>();
+            var smoothie = summary.SelectedSmoothie;
+            var numberOfSelectedVeggies = Veggies.Count(veggie => veggie.IsSelected && !veggie.UseAsSweetener && !veggie.UseAsBoost);
+            return smoothie.VeggieRequirement == numberOfSelectedVeggies;
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using GFFScoringApp.Interfaces;
 using GFFScoringApp.ViewModels;
 using Xamarin.Forms.Internals;
 
@@ -40,7 +41,7 @@ namespace GFFScoringApp.Models
 
         public int CalculateFatBonus()
         {
-            return AllIngredients.Sum(ingredient => ingredient.Protein);
+            return AllIngredients.Sum(ingredient => ingredient.Fat);
         }
 
         /// <summary>
@@ -105,32 +106,52 @@ namespace GFFScoringApp.Models
             }
         }
 
-        public IList<Veggie> SelectedVeggies { get; set; }
-        public IList<Fruit> SelectedFruits { get; set; }
-        public IList<Boost> SelectedBoosts { get; set; }
-        public  IList<Sweetener> SelectedSweeteners { get; set; }
-        
-        public void AddVeggieSelection(IList<Veggie> selectedVeggies)
+        public IList<Ingredient> SelectedVeggies { get; set; }
+        public IList<Ingredient> SelectedFruits { get; set; }
+        public IList<Ingredient> SelectedBoosts { get; set; }
+        public  IList<Ingredient> SelectedSweeteners { get; set; }
+
+        public void ClearVeggieSelection()
         {
             SelectedVeggies.Clear();
+        }
+
+        public void ClearFruitSelection()
+        {
+            SelectedFruits.Clear();
+        }
+
+        public void ClearBoostSelection()
+        {
+            // don't clear out substitutes
+            SelectedBoosts.Clear();
+        }
+
+        public void ClearSweetenerSelection()
+        {
+            // don't clear out substitutes
+            SelectedSweeteners.Clear();
+        }
+
+
+        public void AddVeggieSelection(IList<Ingredient> selectedVeggies)
+        {
             selectedVeggies.ForEach(veggie => SelectedVeggies.Add(veggie));
         }
 
-        public void AddFruitSelection(IList<Fruit> selectedFruits)
+
+        public void AddFruitSelection(IList<Ingredient> selectedFruits)
         {
-            SelectedFruits.Clear();
             selectedFruits.ForEach(fruit => SelectedFruits.Add(fruit));
         }
 
-        public void AddBoostSelection(IList<Boost> selectedBoosts)
+        public void AddBoostSelection(IList<Ingredient> selectedBoosts)
         {
-            SelectedBoosts.Clear();
             selectedBoosts.ForEach(boost => SelectedBoosts.Add(boost));
         }
 
-        public void AddSweetenerSelection(IList<Sweetener> selectedSweeteners)
+        public void AddSweetenerSelection(IList<Ingredient> selectedSweeteners)
         {
-            SelectedSweeteners.Clear();
             selectedSweeteners.ForEach(sweetener => SelectedSweeteners.Add(sweetener));
         }
 
@@ -141,24 +162,10 @@ namespace GFFScoringApp.Models
         {
             SelectedCharacter = new Character();
             SelectedSmoothie = new Smoothie();
-            SelectedVeggies = new List<Veggie>();
-            SelectedFruits = new List<Fruit>();
-            SelectedBoosts = new List<Boost>();
-            SelectedSweeteners = new List<Sweetener>();
+            SelectedVeggies = new List<Ingredient>();
+            SelectedFruits = new List<Ingredient>();
+            SelectedBoosts = new List<Ingredient>();
+            SelectedSweeteners = new List<Ingredient>();
         }
-    }
-
-    public interface ISummary
-    {
-        Character SelectedCharacter { get; set; }
-        Smoothie  SelectedSmoothie { get; set; }
-        IList<Veggie> SelectedVeggies { get; set; }
-        IList<Fruit> SelectedFruits { get; set; }
-        IList<Boost> SelectedBoosts { get; set; }
-        IList<Sweetener> SelectedSweeteners { get; set; }
-        void AddVeggieSelection(IList<Veggie> selectedVeggies);
-        void AddFruitSelection(IList<Fruit> selectedFruits);
-        void AddBoostSelection(IList<Boost> selectedBoosts);
-        void AddSweetenerSelection(IList<Sweetener> selectedSweeteners);
     }
 }

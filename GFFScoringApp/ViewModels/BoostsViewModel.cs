@@ -1,13 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using GFFScoringApp.Interfaces;
 using GFFScoringApp.Models;
 using GFFScoringApp.ViewModels;
 using Xamarin.Forms;
 
 namespace GFFScoringApp.Views
 {
-    internal class BoostsViewModel : BaseViewModel
+    internal class BoostsViewModel : BaseViewModel, ICheckIngredientRequirements<Boost>
     {
         private Boost _selectedBoost = null;
         private bool _isNextEnabled = false;
@@ -31,7 +32,8 @@ namespace GFFScoringApp.Views
         private async void OnSelectedSmoothie()
         {
             var summary = DependencyService.Resolve<ISummary>();
-            summary.AddBoostSelection(Boosts.Where(boost => boost.IsSelected).ToList());
+            summary.ClearBoostSelection();
+            summary.AddBoostSelection(Boosts.Where(boost => boost.IsSelected).Cast<Ingredient>().ToList());
             await PushAsync(new SweetenersPage());
         }
 
@@ -59,13 +61,53 @@ namespace GFFScoringApp.Views
                 new Boost() {ImageUrl = ImageSource.FromFile("wheypowder.png"), Name = "whey powder", HealthBonus = 10, Sweetness = 4, Protein = 3, Color = Enums.Color.White},
             };
 
-            MessagingCenter.Subscribe<Boost>(this, "toggledboost", (sender) => IsNextEnabled = Boosts.Any(boost => boost.IsSelected));
+            HandleBoostSubstitutes();
+
+            MessagingCenter.Subscribe<Boost>(this, "toggledboost", (sender) => IsNextEnabled = IsNextEnabled = DoesIngredientsMeetSmoothieRequirements(sender));
 
 
             SelectSmoothieCommand = new Command(OnSelectedSmoothie);
         }
 
+        protected void HandleBoostSubstitutes()
+        {
+            var summary = DependencyService.Resolve<ISummary>();
 
+            var boostSubstitutes =
+                summary.SelectedBoosts.Where(ingredient => ingredient.UseAsBoost).ToList();
+
+            boostSubstitutes.ForEach(boost => Boosts.Add(ToBoost(boost)));
+            if (boostSubstitutes.Count > 0)
+            {
+                IsNextEnabled = DoesIngredientsMeetSmoothieRequirements(Boosts.LastOrDefault());
+            }
+        }
+
+        private Boost ToBoost(Ingredient ingredient)
+        {
+            return new Boost()
+            {
+                ImageUrl = ingredient.ImageUrl,
+                Name = ingredient.Name,
+                HealthBonus = ingredient.HealthBonus,
+                Sweetness = ingredient.Sweetness,
+                Protein = ingredient.Protein,
+                Fat = ingredient.Fat,
+                Color = ingredient.Color,
+                IsSelected = ingredient.IsSelected
+            };
+
+        }
+
+
+        public bool DoesIngredientsMeetSmoothieRequirements(Boost ingredient)
+        {
+            var summary = DependencyService.Resolve<ISummary>();
+            var smoothie = summary.SelectedSmoothie;
+            var numberOfSelectedBoosts = Boosts.Count(fruit => fruit.IsSelected);
+
+            return smoothie.BoostRequirement == numberOfSelectedBoosts;
+        }
     }
 
 }

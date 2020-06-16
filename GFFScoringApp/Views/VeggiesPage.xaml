@@ -24,14 +24,22 @@
                                     <eventToCommandBehavior:EventToCommandBehavior EventName="Toggled" Command="{Binding SelectedVeggieCommand}"  />
                                 </Switch.Behaviors>
                             </Switch>
-                            <CheckBox Margin="10,0,0,0" IsVisible="{Binding CanBeSweetener}" IsChecked="{Binding UseAsSweetener}" >
-
-                            </CheckBox>
-                            <Label IsVisible="{Binding CanBeSweetener}" Text="Sweetener?"></Label>
-                            <CheckBox Margin="10,0,0,0" IsVisible="{Binding CanBeBoost}" IsChecked="{Binding UsAsBoost}" >
-
-                            </CheckBox>
-                            <Label IsVisible="{Binding CanBeBoost}" Text="Boost?"></Label>
+                            <StackLayout Orientation="Horizontal" IsVisible="{Binding ShowSweetenerChoice}">
+                                <CheckBox Margin="10,0,0,0"  IsChecked="{Binding UseAsSweetener}">
+                                    <CheckBox.Behaviors>
+                                        <eventToCommandBehavior:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding SelectedVeggieCommand}"  />
+                                    </CheckBox.Behaviors>
+                                </CheckBox>
+                                <Label Text="Sweetener?"></Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" IsVisible="{Binding ShowBoostChoice}">
+                                <CheckBox Margin="10,0,0,0" IsChecked="{Binding UseAsBoost}">
+                                    <CheckBox.Behaviors>
+                                        <eventToCommandBehavior:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding SelectedVeggieCommand}"  />
+                                    </CheckBox.Behaviors>
+                                </CheckBox>
+                                <Label IsVisible="{Binding CanBeBoost}" Text="Boost?"></Label>
+                            </StackLayout>
 
                         </StackLayout>
                     </ViewCell>
