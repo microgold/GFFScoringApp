@@ -132,8 +132,8 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.968" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -141,5 +141,161 @@
       <Project>{880FF90A-1AE8-44BB-A44D-F8E7F9A791CC}</Project>
       <Name>GFFScoringApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\yogurt.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\almondbutter.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\apple.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\avocado.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\banana.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\beepollen.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\beet.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\berryboostblitz.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\blackberry.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\blueberry.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\carrot.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cinnamon.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cocoanibs.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\coconutoil.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\crappyfrappe.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cucumber.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\date.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fennel.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\flaxseeds.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fruitpunch.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\gff_splash.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ginger.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\gojiberry.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\grape.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\healthyheather.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hemp.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\honey.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\kale.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ketoken.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\lemon.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mango.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mint.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mushroompowder.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\neatoketo.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\paleopete.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\parsley.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\peach.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\peanutbutter.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pineapple.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\quickylicky.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rainbowglow.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\raspberry.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\redcabbage.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\spinach.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\spirulina.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\strawberry.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\superfoodsallie.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\turmeric.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\veggiewedgie.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\watermelon.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\wheypowder.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\gff.png" />
   </ItemGroup>
 </Project>

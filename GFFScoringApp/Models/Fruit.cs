@@ -8,7 +8,6 @@ namespace GFFScoringApp.Models
     {
   
         public ICommand SelectedFruitCommand { get; set; }
-        public bool IsBerry { get; set; }
 
         public Fruit()
         {

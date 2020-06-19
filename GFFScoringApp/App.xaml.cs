@@ -19,7 +19,8 @@ namespace GFFScoringApp
 
             Device.SetFlags(new[] {
                 "CarouselView_Experimental",
-                "IndicatorView_Experimental"
+                "IndicatorView_Experimental",
+                "RadioButton_Experimental"
             });
 
             DependencyService.Register<MockDataStore>();
@@ -35,7 +36,8 @@ namespace GFFScoringApp
                 await MainPage.Navigation.PushAsync(new CharactersPage());
             };
 
-           
+
+
 
         }
 

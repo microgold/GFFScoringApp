@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:valueConverter="clr-namespace:GFFScoringApp.ValueConverter;assembly=GFFScoringApp"
+             mc:Ignorable="d"
+             x:Class="GFFScoringApp.Views.HolyKaleCheckPage"
+             Title="{Binding Title}"
+             x:Name="SelectHolyKaleCheckPage">
+        <ContentPage.Resources>
+            <valueConverter:InverseBoolConverter x:Key="inverseBoolConverter" />
+        </ContentPage.Resources>
+        <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Orientation="Vertical" Margin="10,0,0,0
+                     ">
+            <Label   Text="Do you have the Holy Kale Card?"/>
+            <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                <RadioButton Text="Yes" IsChecked="{Binding HasCard}" />
+                <RadioButton Text = "No" />
+                <!--<Label Text="Yes"></Label>
+                <CheckBox IsChecked="{Binding HasCard}"></CheckBox>
+                <Label Margin="15, 0, 0, 0" Text="No"></Label>
+                <CheckBox IsChecked="{Binding HasCard, Converter={StaticResource inverseBoolConverter}}"></CheckBox>-->
+            </StackLayout>
+            <Button Margin="0,20,0,0" Command="{Binding SelectNextCommand}" Text="Next"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

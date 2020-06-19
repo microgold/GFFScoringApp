@@ -36,7 +36,7 @@ namespace GFFScoringApp.ViewModels
             var summary = DependencyService.Resolve<ISummary>();
             summary.ClearSweetenerSelection();
             summary.AddSweetenerSelection(Sweeteners.Where(sweetener => sweetener.IsSelected).Cast<Ingredient>().ToList());
-            await PushAsync(new SummaryPage());
+            await PushAsync(new HolyKaleCheckPage());
         }
 
         public bool IsNextEnabled

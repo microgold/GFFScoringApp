@@ -184,10 +184,19 @@
 
         </Label>
 
-        <Label Grid.Row="5" Grid.Column="0" Text ="Attribute Bonus:" FontSize="Large" />
-        <Label Grid.Row="5" Grid.Column="1" Text="{Binding Summary.AttributeBonus}" VerticalOptions="Center" FontSize="Large">
+        <Frame ScaleX=".75" ScaleY=".75" Grid.Column="0" Grid.Row="5">
+            <StackLayout Orientation="Horizontal">
+             <StackLayout Orientation="Horizontal" >
+                <Label   Text ="Extra Health Bonus:" FontSize="Small" />
+                <Label   Text="{Binding Summary.ExtraHealthBonus}" VerticalOptions="Center" FontSize="Small"/>
+            </StackLayout>
 
-        </Label>
+            <StackLayout Margin="7,0,0,0" Orientation="Horizontal" Grid.Column="1" Grid.Row="5">
+                <Label   Text ="Attribute Bonus:" FontSize="Small" />
+                <Label   Text="{Binding Summary.AttributeBonus}" VerticalOptions="Center" FontSize="Small"/>
+            </StackLayout>
+            </StackLayout>
+        </Frame>
 
 
 

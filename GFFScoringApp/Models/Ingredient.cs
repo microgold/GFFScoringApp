@@ -8,6 +8,7 @@ namespace GFFScoringApp.Models
     {
         public Color Color { get; set; }
         public bool IsSuperFood { get; set; }
+        public bool IsBerry { get; set; }
 
         public bool IsSelected { get; set; }
 

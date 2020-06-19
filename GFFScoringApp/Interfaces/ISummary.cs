@@ -11,6 +11,19 @@ namespace GFFScoringApp.Interfaces
         IList<Ingredient> SelectedFruits { get; set; }
         IList<Ingredient> SelectedBoosts { get; set; }
         IList<Ingredient> SelectedSweeteners { get; set; }
+
+        int AttributeBonus { get; }
+
+        int ExtraHealthBonus { get;  }
+
+        int TotalScore { get;  }
+
+        int SweetnessScore { get;  }
+        int FatScore { get; }
+        int ProteinScore { get; }
+        bool HasHolyKaleMixup { get; set; }
+
+
         void AddVeggieSelection(IList<Ingredient> selectedVeggies);
         void AddFruitSelection(IList<Ingredient> selectedFruits);
         void AddBoostSelection(IList<Ingredient> selectedBoosts);

@@ -5,7 +5,7 @@ using Xamarin.Forms.Xaml;
 
 namespace GFFScoringApp.ValueConverter
 {
-public class InverseBoolConverter : IValueConverter, IMarkupExtension
+public class InverseBoolConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {

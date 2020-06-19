@@ -34,26 +34,13 @@ namespace GFFScoringApp.Models
             }
         }
 
-        public int CalculateProteinBonus()
-        {
-            return AllIngredients.Sum(ingredient => ingredient.Protein);
-        }
 
-        public int CalculateFatBonus()
-        {
-            return AllIngredients.Sum(ingredient => ingredient.Fat);
-        }
 
         /// <summary>
         /// if sweetness is over 10, lose the bonus
         /// if its a crappy frappy, sweetness has to be over 15
         /// </summary>
         /// <returns></returns>
-        public int CalculateSweetnessBonus()
-        {
-            return AllIngredients.Sum(ingredient => ingredient.Sweetness);
-
-        }
 
         private IList<Ingredient> AllIngredients
         {
@@ -70,10 +57,10 @@ namespace GFFScoringApp.Models
         {
             get
             {
-                var receiveAttributeSweetBonus = CalculateSweetnessBonus() >= SelectedSmoothie.MinimumSweetnessRequirement &&
-                                                 CalculateSweetnessBonus() < SweetnessLimit;
-                var receiveAttributeFatBonus = CalculateFatBonus() >= SelectedSmoothie.MinimumFatRequirement;
-                var receiveAttributeProteinBonus =  CalculateProteinBonus() >= SelectedSmoothie.MinimumProteinRequirement;
+                var receiveAttributeSweetBonus = SweetnessScore >= SelectedSmoothie.MinimumSweetnessRequirement &&
+                                                 SweetnessScore < SweetnessLimit;
+                var receiveAttributeFatBonus = FatScore >= SelectedSmoothie.MinimumFatRequirement;
+                var receiveAttributeProteinBonus =  ProteinScore >= SelectedSmoothie.MinimumProteinRequirement;
 
                 
               
@@ -87,15 +74,112 @@ namespace GFFScoringApp.Models
             }
         }
 
+        public int HolyKaleBonus
+        {
+            get
+            {
+                return HasHolyKaleMixup ? 30 : 0;
+            }
+        }
+
+
+        private int RainbowGlowBonus
+        {
+            get
+            {
+                if (SelectedSmoothie.Name != "Rainbow Glow") return 0;
+                var ingredientColorCounts =  AllIngredients.GroupBy(ingredient => ingredient.Color).Select(group => new
+                {
+                    Metric = group.Key,
+                    Count = group.Count()
+                });
+
+              return ingredientColorCounts.Any(count => count.Count > 1) ? 0 : 10;
+            }
+
+        }
+
+
+        private int SuperFoodBonus
+        {
+            get
+            {
+                return AllIngredients.Count(ingredient => ingredient.IsSuperFood) >= 3 ? 30 : 0;
+            }
+        }
+
+        private int BerryBoostBonus
+        {
+            get
+            {
+                if (SelectedSmoothie.Name != "Berryboost Blitz") return 0;
+                return SelectedFruits.Count(fruit => fruit.IsBerry) > 0 ? 10 : 0;
+            }
+        }
+
+        private int SuperFoodSallieBonus
+        {
+            get
+            {
+                if (SelectedSmoothie.Name != "Superfood Sallie") return 0;
+                return AllIngredients.Count(ingredient => ingredient.IsSuperFood) >= 2 ? 20 : 0;
+            }
+        }
+
+        private int BlueberryBonus
+        {
+            get
+            {
+                return SelectedFruits.Count(ingredient => ingredient.Name == "blueberry") == 1 ? 20 : 0;
+            }
+        }
+
+        public int ExtraHealthBonus
+        {
+            get
+            {
+                // calculate if they have 3 or more superfoods
+                var extraBonus = SuperFoodBonus + BlueberryBonus + RainbowGlowBonus + BerryBoostBonus + SuperFoodSallieBonus + HolyKaleBonus;
+
+                return extraBonus;
+            }
+        }
+
+
         private int SweetnessLimit => (SelectedSmoothie.Name == "Crappy Frappe") ? 15 : 10;
 
         public int TotalScore
         {
             get
             {
-                return AttributeBonus + VeggieScore + FruitScore + BoostScore + SweetenerScore;
+                return AttributeBonus + VeggieScore + FruitScore + BoostScore + SweetenerScore + ExtraHealthBonus;
             }
         }
+
+        public int SweetnessScore
+        {
+            get
+            {
+                return AllIngredients.Select(ingredient => ingredient.Sweetness).Sum();
+            }
+        }
+
+        public int FatScore
+        {
+            get
+            {
+                return AllIngredients.Select(ingredient => ingredient.Fat).Sum();
+            }
+        }
+        public int ProteinScore
+        {
+            get
+            {
+                return AllIngredients.Select(ingredient => ingredient.Protein).Sum();
+            }
+        }
+
+        public bool HasHolyKaleMixup { get; set; }
 
         public int SweetenerScore
         {
@@ -105,6 +189,8 @@ namespace GFFScoringApp.Models
                 return pureHealthBonus;
             }
         }
+
+
 
         public IList<Ingredient> SelectedVeggies { get; set; }
         public IList<Ingredient> SelectedFruits { get; set; }
@@ -157,6 +243,7 @@ namespace GFFScoringApp.Models
 
         public Character SelectedCharacter { get; set; }
         public Smoothie SelectedSmoothie { get; set; }
+
 
         public Summary()
         {

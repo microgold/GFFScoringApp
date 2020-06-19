@@ -6,9 +6,13 @@
             mc:Ignorable="d"
             xmlns:views="clr-namespace:GFFScoringApp.Views"
             x:Class="GFFScoringApp.Views.MainPage">
+    <Grid>
+        <Image Opacity=".35" Source="gff_splash.png" Aspect="AspectFill"></Image>
+        <!--<Button x:Name="SplashButton" Opacity=".25" ImageSource="gff_splash.png"></Button>-->
+        <Button x:Name="SplashButton" Text="Tap Screen to Continue..." FontSize="Large" Opacity=".25"></Button>
+     </Grid>
 
-    <Button x:Name="SplashButton" Opacity=".25" ImageSource="gff_splash.png" ></Button>
-    
+
     <!--<TabbedPage.Children>
         <NavigationPage Title="Score Smoothie">
             <x:Arguments>
